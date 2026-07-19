@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThanhHai FF Mod Menu</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            user-select: none;
+        }
+
+        body {
+            background-color: #121212;
+            background-image: radial-gradient(circle at 50% 0%, #2a1b0a 0%, #121212 70%);
+            color: #fff;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* KHUNG MENU FF */
+        .ff-menu {
+            width: 700px;
+            height: 400px;
+            background-color: rgba(15, 15, 15, 0.95);
+            border: 2px solid #ff9800;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(255, 152, 0, 0.3), inset 0 0 10px rgba(255, 152, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* HEADER */
+        .ff-header {
+            background: linear-gradient(90deg, #ff9800, #ff5722);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .ff-brand {
+            font-size: 20px;
+            text-shadow: 2px 2px 0px #000;
+        }
+
+        .ff-version {
+            font-size: 12px;
+            background: #000;
+            padding: 3px 8px;
+            border-radius: 4px;
+            color: #ff9800;
+        }
+
+        /* BODY LAYOUT */
+        .ff-body {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* SIDEBAR TABS */
+        .ff-sidebar {
+            width: 180px;
+            background-color: #1a1a1a;
+            border-right: 1px solid #333;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .tab-btn {
+            background-color: #252525;
+            color: #aaa;
+            border: 1px solid #333;
+            padding: 12px 15px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 13px;
+            cursor: pointer;
+            text-align: left;
+            text-transform: uppercase;
+            transition: 0.2s;
+        }
+
+        .tab-btn:hover {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .tab-btn.active {
+            background-color: #ff9800;
+            color: #000;
+            border-color: #ff9800;
+            box-shadow: 0 0 10px rgba(255, 152, 0, 0.5);
+        }
+
+        /* NỘI DUNG TABS */
+        .ff-content {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .tab-panel { display: none; }
+        .tab-panel.active { display: block; }
+
+        /* ELEMENTS STYLE */
+        .section-title {
+            color: #ff9800;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            padding-bottom: 5px;
+            border-bottom: 1px dashed #ff9800;
+        }
+
+        .control-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #1e1e1e;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border-left: 3px solid #444;
+            transition: 0.2s;
+        }
+        
+        .control-row:hover {
+            border-left-color: #ff9800;
+            background: #252525;
+        }
+
+        .control-label {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .control-sub {
+            font-size: 10px;
+            color: #888;
+            margin-top: 2px;
+        }
+
+        /* CÁC NÚT TƯƠNG TÁC */
+        input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #ff9800;
+            cursor: pointer;
+        }
+
+        select {
+            background: #111;
+            color: #ff9800;
+            border: 1px solid #444;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 12px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        input[type="range"] {
+            width: 120px;
+            accent-color: #ff9800;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="ff-menu">
+    <!-- HEADER -->
+    <div class="ff-header">
+        <div class="ff-brand">THANHHAI VIP</div>
+        <div class="ff-version">v1.100.X - SAFE</div>
+    </div>
+
+    <!-- BODY -->
+    <div class="ff-body">
+        <!-- SIDEBAR -->
+        <div class="ff-sidebar">
+            <button class="tab-btn active" onclick="openTab(event, 'tab-aim')">Aimbot & Combat</button>
+            <button class="tab-btn" onclick="openTab(event, 'tab-move')">Movement & Fly</button>
+            <button class="tab-btn" onclick="openTab(event, 'tab-esp')">ESP Visuals</button>
+        </div>
+
+        <!-- CONTENT -->
+        <div class="ff-content">
+            
+            <!-- TAB 1: AIMBOT & COMBAT -->
+            <div id="tab-aim" class="tab-panel active">
+                <div class="section-title">Chức năng Ngắm Bắn (Aimbot)</div>
+                
+                <div class="control-row">
+                    <div>
+                        <div class="control-label">Kích hoạt AimBot</div>
+                        <div class="control-sub">Tự động khóa tâm vào mục tiêu</div>
+                    </div>
+                    <input type="checkbox" id="enable-aim" checked onchange="toggleAimParams(this.checked)">
+                </div>
+
+                <div class="control-row">
+                    <div class="control-label">Vị trí khóa tâm (Aim Part)</div>
+                    <select id="aim-part">
+                        <option>Đầu (Headshot 100%)</option>
+                        <option selected>Cổ (Neck - An Toàn)</option>
+                        <option>Thân người (Body)</option>
+                    </select>
+                </div>
+
+                <div class="control-row">
+                    <div class="control-label">FOV (Vùng quét mục tiêu)</div>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <input type="range" id="aim-fov" min="10" max="360" value="90" oninput="document.getElementById('fov-val').innerText = this.value + '°'">
+                        <span id="fov-val" style="color: #ff9800; font-size: 12px; font-weight: bold; width: 35px;">90°</span>
+                    </div>
+                </div>
+
+                <div class="section-title" style="margin-top: 15px;">Chức năng Hủy Diệt</div>
+                
+                <div class="control-row" style="border-left-color: #ff3d00;">
+                    <div>
+                        <div class="control-label" style="color: #ff3d00;">AimKill (Auto Kill)</div>
+                        <div class="control-sub">Tự động xả đạn khi tâm khóa mục tiêu</div>
+                    </div>
+                    <input type="checkbox">
+                </div>
+            </div>
+
+            <!-- TAB 2: MOVEMENT & FLY -->
+            <div id="tab-move" class="tab-panel">
+                <div class="section-title">Di Chuyển & Dịch Chuyển</div>
+                
+                <div class="control-row">
+                    <div>
+                        <div class="control-label">Fly Hack (Bay trên không)</div>
+                        <div class="control-sub">Sử dụng nút nhảy để bay lên</div>
+                    </div>
+                    <input type="checkbox">
+                </div>
+                
+                <div class="control-row">
+                    <div class="control-label">Tốc độ bay (Fly Speed)</div>
+                    <select>
+                        <option>Chậm (An Toàn)</option>
+                        <option selected>Trung bình</option>
+                        <option>Nhanh (Flash)</option>
+                    </select>
+                </div>
+
+                <div class="control-row">
+                    <div>
+                        <div class="control-label">Teleport (Dịch chuyển tức thời)</div>
+                        <div class="control-sub">Dịch chuyển đến vị trí kẻ địch gần nhất</div>
+                    </div>
+                    <button style="background: #ff9800; border: none; padding: 5px 15px; border-radius: 5px; font-weight: bold; cursor: pointer;">TELE NOW</button>
+                </div>
+                
+                <div class="control-row">
+                    <div>
+                        <div class="control-label">Teleport Car (Xe dịch chuyển)</div>
+                        <div class="control-sub">Lái xe xuyên địa hình & đến kẻ địch</div>
+                    </div>
+                    <input type="checkbox">
+                </div>
+            </div>
+
+            <!-- TAB 3: ESP -->
+            <div id="tab-esp" class="tab-panel">
+                <div class="section-title">ESP & Hiển thị</div>
+                <div class="control-row"><div class="control-label">ESP Line (Kẻ tia đến địch)</div><input type="checkbox" checked></div>
+                <div class="control-row"><div class="control-label">ESP Box (Vẽ hộp quanh địch)</div><input type="checkbox" checked></div>
+                <div class="control-row"><div class="control-label">ESP Distance (Hiển thị khoảng cách)</div><input type="checkbox" checked></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    function openTab(evt, tabId) {
+        // Ẩn tất cả nội dung
+        var panels = document.querySelectorAll('.tab-panel');
+        panels.forEach(p => p.classList.remove('active'));
+
+        // Xóa class active của các nút
+        var btns = document.querySelectorAll('.tab-btn');
+        btns.forEach(b => b.classList.remove('active'));
+
+        // Hiện nội dung & active nút hiện tại
+        document.getElementById(tabId).classList.add('active');
+        evt.currentTarget.classList.add('active');
+    }
+
+    function toggleAimParams(isActive) {
+        document.getElementById('aim-part').disabled = !isActive;
+        document.getElementById('aim-fov').disabled = !isActive;
+    }
+</script>
+
+</body>
+</html>
